@@ -174,7 +174,8 @@ namespace CoreML {
             if(!is_setup_routine) {
                 std::ostringstream ss;
                 ss << "Setup routine not called yet for node with treeId=" << treeId << ", nodeID=" << nodeId << ".";
-                throw std::logic_error(ss.str());
+                printf("%s", ss.str().c_str());
+                abort();
             }
 
             int new_node_index = tree_parameters->nodes_size();
@@ -187,7 +188,8 @@ namespace CoreML {
             if(is_setup_routine) {
                 std::ostringstream ss;
                 ss << "Setup routine called multiple times for treeId=" << treeId << ", nodeID=" << nodeId << ".";
-                throw std::logic_error(ss.str());
+                printf("%s", ss.str().c_str());
+                abort();
             }
             return *(tree_parameters->mutable_nodes(it->second));
         }

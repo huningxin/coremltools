@@ -16,7 +16,6 @@ namespace CoreML {
         
             // Convenience typedefs
         typedef Specification::FeatureType FT;
-        typedef Specification::Imputer::ReplaceValueCase RVC;
         
         Result result;
 

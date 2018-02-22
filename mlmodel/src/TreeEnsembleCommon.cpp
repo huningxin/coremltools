@@ -33,14 +33,16 @@ namespace CoreML { namespace TreeEnsembles {
             }
 
             if(is_fatal) {
-                throw std::logic_error("Errors encountered during processing tree model:\n" + current_error_msg.str());
+                printf("Errors encountered during processing tree model: %s\n", current_error_msg.str().c_str());
+                abort();
             }
         };
 
         /** Preliminary. -- get the right tree parameters out to get all the nodes.
          */
         if(!m_spec.has_treeensembleclassifier() && !m_spec.has_treeensembleregressor()) {
-            throw std::invalid_argument("Model is not a tree ensemble.");
+            printf("Model is not a tree ensemble.");
+            abort();
         }
 
         const Specification::TreeEnsembleParameters& tes =
@@ -99,7 +101,8 @@ namespace CoreML { namespace TreeEnsembles {
                         break;
                     default:
                     case TreeNode::LeafNode:
-                        throw std::logic_error("Branch mode hit bad value -- this is confusing; error in validator?");
+                        printf("Branch mode hit bad value -- this is confusing; error in validator?");
+                        abort();
                 }
 
                 n.branch_feature_index = ns.branchfeatureindex();
@@ -561,7 +564,8 @@ namespace CoreML { namespace TreeEnsembles {
          *
          */
         if(error_count != 0) {
-            throw std::logic_error("Error(s) in tree structure: \n" + current_error_msg.str());
+            printf("Error(s) in tree structure: %s\n", current_error_msg.str().c_str());
+            abort();
         }
         
         // And we're done.

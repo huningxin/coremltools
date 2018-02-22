@@ -74,7 +74,8 @@ FeatureType FeatureType::T() { return FeatureType(U); }
                 params->mutable_stringkeytype();
                 break;
             case MLDictionaryFeatureTypeKeyType_NOT_SET:
-                throw std::runtime_error("Invalid dictionary key type. Expected one of: {int64, string}.");
+                printf("Invalid dictionary key type. Expected one of: {int64, string}.");
+                abort();
         }
 
         return out;

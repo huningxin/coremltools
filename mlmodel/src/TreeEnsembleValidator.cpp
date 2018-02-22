@@ -15,25 +15,13 @@ namespace CoreML {
 
     template <>
     Result validate<MLModelType_treeEnsembleClassifier>(const Specification::Model& format) {
-        try {
-            TreeEnsembles::constructAndValidateTreeEnsembleFromSpec(format);
-
-        } catch (const std::logic_error& error) {
-            return Result(ResultType::INVALID_MODEL_INTERFACE, error.what());
-        }
-
+        TreeEnsembles::constructAndValidateTreeEnsembleFromSpec(format);
         return Result();
     }
 
     template <>
     Result validate<MLModelType_treeEnsembleRegressor>(const Specification::Model& format) {
-        try {
-            TreeEnsembles::constructAndValidateTreeEnsembleFromSpec(format);
-            
-        } catch (const std::logic_error& error) {
-            return Result(ResultType::INVALID_MODEL_INTERFACE, error.what());
-        }
-        
+        TreeEnsembles::constructAndValidateTreeEnsembleFromSpec(format);
         return Result();
     }
     
