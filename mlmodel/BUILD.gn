@@ -1,0 +1,72 @@
+# Copyright 2017 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//third_party/protobuf/proto_library.gni")
+
+proto_library("proto") {
+  sources = [
+    "format/ArrayFeatureExtractor.proto",
+    "format/CategoricalMapping.proto",
+    "format/DataStructures.proto",
+    "format/DictVectorizer.proto",
+    "format/FeatureTypes.proto",
+    "format/FeatureVectorizer.proto",
+    "format/GLMClassifier.proto",
+    "format/GLMRegressor.proto",
+    "format/Identity.proto",
+    "format/Imputer.proto",
+    "format/Model.proto",
+    "format/NeuralNetwork.proto",
+    "format/Normalizer.proto",
+    "format/OneHotEncoder.proto",
+    "format/SVM.proto",
+    "format/Scaler.proto",
+    "format/TreeEnsemble.proto",
+  ]
+  proto_out_dir = "third_party/coremltools/mlmodel"
+}
+
+static_library("mlmodel") {
+  sources = [
+    "../deps/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc",
+    "src/Comparison.cpp",
+    "src/DataType.cpp",
+    "src/Model.cpp",
+    "src/Result.cpp",
+    "src/Utils.cpp",
+    "src/ArrayFeatureExtractorValidator.cpp",
+    "src/CategoricalMappingValidator.cpp",
+    "src/DictVectorizerValidator.cpp",
+    "src/FeatureVectorizerValidator.cpp",
+    "src/IdentityValidator.cpp",
+    "src/ImputerValidator.cpp",
+    "src/InterfaceValidators.cpp",
+    "src/LinearModelValidator.cpp",
+    "src/NeuralNetworkValidator.cpp",
+    "src/NormalizerValidator.cpp",
+    "src/OneHotEncoderValidator.cpp",
+    "src/PipelineValidator.cpp",
+    "src/ScalarValidator.cpp",
+    "src/SVMValidator.cpp",
+    "src/TreeEnsembleValidator.cpp",
+    "src/TreeEnsembleCommon.cpp",
+    "src/transforms/LinearModel.cpp",
+    "src/transforms/Pipeline.cpp",
+    "src/transforms/TreeEnsemble.cpp",
+    "src/transforms/NeuralNetwork.cpp",
+    "src/transforms/FeatureVectorizer.cpp",
+    "src/transforms/DictVectorizer.cpp",
+    "src/transforms/OneHotEncoder.cpp",
+  ]
+
+  deps = [
+    ":proto",
+    "//third_party/protobuf:protobuf_lite",
+  ]
+
+  cflags = [
+    "-Wno-unknown-warning-option",
+    "-Wno-unused-local-typedef",
+  ]
+}
